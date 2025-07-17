@@ -21,5 +21,6 @@ test.show();
 for (const item of data) {
     test.set(...item);
     test.show()
+    console.log("Length", test.length(), "Occupancy", test.occupancy());
+    console.log(`Load factor: ${test.loadFactor()}\n`)
 }
-console.log("Length", test.length(), "Occupancy", test.occupancy());

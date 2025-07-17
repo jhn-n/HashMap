@@ -27,13 +27,15 @@ export class HashMap {
     return this.buckets.filter((b) => b.size() > 0).length;
   }
 
+  loadFactor() {
+    return (this.occupancy() / this.capacity);
+  }
+
   checkLoad() {
-    const occupancy = this.buckets.filter((b) => b.size() > 0).length;
-    const loadFactor = occupancy / this.capacity;
-    if (loadFactor >= this.loadLimitFactor) {
+    if (this.loadFactor() >= this.loadLimitFactor) {
       console.log("load factor threshold breached");
       console.log(
-        `${occupancy} out of ${
+        `${this.occupancy} out of ${
           this.capacity
         } occupied with ${this.length()} elements`
       );
