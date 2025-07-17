@@ -1,4 +1,4 @@
-import { LinkedList } from "./linked-list.js";
+import { LinkedListKeyValue } from "./linked-list.js";
 
 export class HashMap {
   constructor() {
@@ -10,7 +10,7 @@ export class HashMap {
     // this.buckets = Array(this.capacity).map(() => new LinkedList());
     this.buckets = [];
     for (let i = 0; i < this.capacity; i++) {
-      this.buckets.push(new LinkedList());
+      this.buckets.push(new LinkedListKeyValue());
     }
   }
 
@@ -35,7 +35,7 @@ export class HashMap {
     if (this.loadFactor() >= this.loadLimitFactor) {
       console.log("load factor threshold breached");
       console.log(
-        `${this.occupancy} out of ${
+        `${this.occupancy()} out of ${
           this.capacity
         } occupied with ${this.length()} elements`
       );
@@ -47,7 +47,7 @@ export class HashMap {
     const newCapacity = 2 * this.capacity;
     const newBuckets = [];
     for (let i = 0; i < newCapacity; i++) {
-      newBuckets.push(new LinkedList());
+      newBuckets.push(new LinkedListKeyValue());
     }
     for (const entry of this.entries()) {
       const [key, value] = entry;
